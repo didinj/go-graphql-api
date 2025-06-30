@@ -4,11 +4,11 @@ schema:
 
 # Where should the generated server code go?
 exec:
-  package: graph
+  package: generated
   layout: single-file # Only other option is "follow-schema," ie multi-file.
 
   # Only for single-file layout:
-  filename: graph/generated.go
+  filename: graph/generated/generated.go
 
   # Only for follow-schema layout:
   # dir: graph
@@ -135,7 +135,7 @@ models:
       - github.com/99designs/gqlgen/graphql.Int
       - github.com/99designs/gqlgen/graphql.Int64
       - github.com/99designs/gqlgen/graphql.Int32
-  # gqlgen provides a default GraphQL UUID convenience wrapper for github.com/google/uuid 
+  # gqlgen provides a default GraphQL UUID convenience wrapper for github.com/google/uuid
   # but you can override this to provide your own GraphQL UUID implementation
   UUID:
     model:

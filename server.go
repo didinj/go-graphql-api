@@ -5,12 +5,11 @@ import (
 	"net/http"
 
 	"github.com/didinj/go-graphql-api/db" // <-- replace with your actual module name
-
 	"github.com/didinj/go-graphql-api/graph"
-	"github.com/didinj/go-graphql-api/graph/generated"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/didinj/go-graphql-api/graph/generated"
 )
 
 const defaultPort = "8080"
@@ -21,7 +20,8 @@ func main() {
 	}
 
 	port := defaultPort
-	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
+	schema := generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}})
+	srv := handler.New(schema)
 
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
